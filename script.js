@@ -3,7 +3,8 @@ function computerPlay() {
     let RPSarr = ['rock', 'paper', 'scissors']
 
     //generate random number to choose element from array
-    let randomNum = Math.floor(Math.random() * 2);
+    let randomNum = Math.floor(Math.random() * 3);
+    console.log(randomNum)
 
     //return the random pick
     return RPSarr[randomNum];
@@ -33,5 +34,12 @@ function playRound(playerSelection, computerSelection){
             if(computerSelection === 'rock') return 'You Lose ' + computerSelection + ' beats ' + playerSelection;
             return 'You win ' + playerSelection+ ' beats ' + computerSelection;
             break;
+    }
+}
+
+function game(){
+    for (let i = 0; i < 5; i++){
+        userInput = prompt('Type one of "Scissors, Paper, Rock" to play round');
+        console.log(playRound(userInput, computerPlay()));
     }
 }
