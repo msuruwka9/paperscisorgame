@@ -4,7 +4,7 @@ function computerPlay() {
     let RPSarr = ['Rock', 'Paper', 'Scissors']
 
     //generate random number to choose element from array
-    let randomNum = Math.floor(Math.random() * 3) + 1;
+    let randomNum = Math.floor(Math.random() * 2);
 
     //return the random pick
 
