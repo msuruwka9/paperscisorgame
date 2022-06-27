@@ -4,7 +4,6 @@ function computerPlay() {
 
     //generate random number to choose element from array
     let randomNum = Math.floor(Math.random() * 3);
-    console.log(randomNum)
 
     //return the random pick
     return RPSarr[randomNum];
@@ -37,9 +36,12 @@ function playRound(playerSelection, computerSelection){
     }
 }
 
-function game(){
-    for (let i = 0; i < 5; i++){
-        userInput = prompt('Type one of "Scissors, Paper, Rock" to play round');
-        console.log(playRound(userInput, computerPlay()));
-    }
+
+const buttons = document.querySelectorAll('button');
+const result = document.querySelector('#result');
+
+buttons.forEach(button => button.addEventListener('click', () => consoleRound(button.id)) );
+
+function consoleRound(playerSelection){
+    result.textContent = playRound(playerSelection, computerPlay());
 }
