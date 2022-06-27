@@ -39,6 +39,8 @@ function playRound(playerSelection, computerSelection){
 
 const buttons = document.querySelectorAll('button');
 const resultText = document.querySelector('#result');
+const currScore = document.querySelector('#curr-score');
+const finalScore = document.querySelector('#final-score');
 let arrOfResults = [0, 0]; //first - computer, second - human
 
 buttons.forEach(button => button.addEventListener('click', () => game(button.id)) );
@@ -56,5 +58,14 @@ function game(playerSelection){
     } 
     if(result === 2){
         resultText.textContent = "There is Draw in this round!"
+    }
+    currScore.textContent = `Computer: ${arrOfResults[0]} - Human: ${arrOfResults[1]}`
+    if(arrOfResults[0] === 5){
+        finalScore.textContent = 'Computer win!';
+        buttons.forEach(button => button.disabled = true);
+
+    } else if (arrOfResults[1] === 5) {
+        finalScore.textContent = 'Human win!'
+        buttons.forEach(button => button.disabled = true);  
     }
 }
