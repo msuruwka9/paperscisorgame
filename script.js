@@ -62,10 +62,31 @@ function game(playerSelection){
     currScore.textContent = `Computer: ${arrOfResults[0]} - Human: ${arrOfResults[1]}`
     if(arrOfResults[0] === 5){
         finalScore.textContent = 'Computer win!';
-        buttons.forEach(button => button.disabled = true);
+        createRestartButton();
 
     } else if (arrOfResults[1] === 5) {
         finalScore.textContent = 'Human win!'
-        buttons.forEach(button => button.disabled = true);  
+        createRestartButton();
     }
 }
+
+function createRestartButton(){
+    buttons.forEach(button => button.disabled = true);
+    let restartButton = document.createElement('button');
+    restartButton.id = 'restart-button';
+    restartButton.textContent = 'Restart the game!'
+    finalScore.after(restartButton);
+    restartButton.addEventListener('click', restartGame);
+}
+
+function restartGame(){
+    let restartButton = document.querySelector('#restart-button');
+    arrOfResults[0] = 0;
+    arrOfResults[1] = 0;
+    currScore.textContent = `Computer: ${arrOfResults[0]} - Human: ${arrOfResults[1]}`
+    finalScore.textContent = '';
+    buttons.forEach(button => button.disabled = false);
+    restartButton.remove();
+}
+
+
