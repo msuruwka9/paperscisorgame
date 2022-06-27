@@ -18,30 +18,43 @@ function playRound(playerSelection, computerSelection){
 
     //checking who wins
     if(playerSelection === computerSelection){
-        return "There is Draw!"
+        return 2;
     }
     switch (playerSelection){
         case 'rock':
-            if(computerSelection === 'paper') return 'You Lose ' + computerSelection + ' beats ' + playerSelection;
-            return 'You win ' + playerSelection+ ' beats ' + computerSelection;
+            if(computerSelection === 'paper') 0; //return 'You Lose ' + computerSelection + ' beats ' + playerSelection;
+            return 1; //'You win ' + playerSelection+ ' beats ' + computerSelection;
             break;
         case 'paper':
-            if(computerSelection === 'scissors') return 'You Lose ' + computerSelection + ' beats ' + playerSelection;
-            return 'You win ' + playerSelection+ ' beats ' + computerSelection;
+            if(computerSelection === 'scissors') return 0; //'You Lose ' + computerSelection + ' beats ' + playerSelection;
+            return 1;//'You win ' + playerSelection+ ' beats ' + computerSelection;
             break;
         case 'scissors':
-            if(computerSelection === 'rock') return 'You Lose ' + computerSelection + ' beats ' + playerSelection;
-            return 'You win ' + playerSelection+ ' beats ' + computerSelection;
+            if(computerSelection === 'rock') return 0;//'You Lose ' + computerSelection + ' beats ' + playerSelection;
+            return 1;//'You win ' + playerSelection+ ' beats ' + computerSelection;
             break;
     }
 }
 
 
 const buttons = document.querySelectorAll('button');
-const result = document.querySelector('#result');
+const resultText = document.querySelector('#result');
+let arrOfResults = [0, 0]; //first - computer, second - human
 
-buttons.forEach(button => button.addEventListener('click', () => consoleRound(button.id)) );
+buttons.forEach(button => button.addEventListener('click', () => game(button.id)) );
 
-function consoleRound(playerSelection){
-    result.textContent = playRound(playerSelection, computerPlay());
+function game(playerSelection){
+    computerSelection = computerPlay();
+    const result = playRound(playerSelection, computerSelection);
+    if(result === 0){
+        arrOfResults[0] += 1;
+        resultText.textContent = 'You Lose this round ' + computerSelection + ' beats ' + playerSelection;
+    }
+    if(result === 1){
+        arrOfResults[1] += 1;
+        resultText.textContent = 'You win this round ' + playerSelection+ ' beats ' + computerSelection;
+    } 
+    if(result === 2){
+        resultText.textContent = "There is Draw in this round!"
+    }
 }
